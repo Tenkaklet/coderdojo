@@ -1,7 +1,7 @@
 # The MIT License (MIT)
 
 - Copyright &copy; 2022 Thomas Hellström (<rel@xed.se>)
-- Copyright &copy; 2022 Max Carlquist
+- Copyright &copy; 2022 Max Carlquist (tenkaklet@gmail.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
