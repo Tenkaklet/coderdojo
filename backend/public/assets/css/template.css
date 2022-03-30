@@ -1,0 +1,11 @@
+:root {
+  /*colors*/
+  --main-color: #f2b13b;
+  --second-color: #ed1c24;
+  --gray-color: #262425;
+  --lightGray-color: #393638;
+}
+button {
+  background-color: var(--main-color);
+  color: var(--gray-color);
+}
