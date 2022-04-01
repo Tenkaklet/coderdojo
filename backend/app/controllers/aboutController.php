@@ -8,8 +8,13 @@ class aboutController extends Controller{
         $allData = $this->aboutModal->allData();
         $data = [
             'allData' => $allData,
+            'request_type' => $_SERVER['REQUEST_METHOD'],
             'params' => $this->_params
         ];
-        $this->view('about/default', $data);
+        if($_SERVER['REQUEST_METHOD'] == "GET"){
+            $this->view('about/get', $data);
+        }else if($_SERVER['REQUEST_METHOD'] == "POST"){
+            $this->view('about/post', $data);
+        }
     }
 }

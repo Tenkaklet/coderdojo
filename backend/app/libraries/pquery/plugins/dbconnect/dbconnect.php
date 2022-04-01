@@ -6,7 +6,7 @@ class dbconnect extends dbconf{
     private $responseArr = array();
 
     public function __construct($dbId){
-        //it will call the cunstructor of Rest class
+        //it will call the cunstructor of dbconf class
         parent::__construct($dbId);
     }
 
