@@ -4,7 +4,8 @@
 /node_modules
 /.pnp
 .pnp.js
-
+# inlcude own pquery.ini file, please :)
+*/pquery.ini
 # testing
 /coverage
 
