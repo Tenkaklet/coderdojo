@@ -10,6 +10,7 @@ class mail{
         include 'PHPMailer\src\SMTP.php';
         include 'PHPMailer\src\Exception.php';
 
+        echo "Hej från email";
 
         $subject = $actionRequest['subject'];
         $noHtmlContent = $actionRequest['noHtmlContent'];
