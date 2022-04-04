@@ -1,17 +1,18 @@
-/* @tailwind base;
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
     body {
-      @apply font-[Oswald];
+      @apply font-[Raleway];
     }
   
     li {
       @apply px-4;
       @apply cursor-pointer;
     }
-} */
+  }
+
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata&family=Lato&family=Merriweather&family=Noto+Serif:wght@400;700&family=Oswald&family=Poppins:wght@400;500&family=Raleway:wght@300;400;500;600;700;800;900&display=swap');
 
 body {
@@ -21,27 +22,7 @@ body {
     font-family: 'Oswald';
 }
 
-/* fixed w-full h-[80px] flex justify-between items-center px-4 bg-[#0a192f] text-gray-300 */
-.navbar {
-    position: fixed;
-    width: 100%;
-    height: 80px;
-    display: flex;
-    /* justify-content: space-between; */
-    align-items: center;
-    padding: 0 2rem;
-    background-color: #AE0B05;
-    color: rgb(255, 255, 255);
+h1, h1 span {
+    font-size: 25px;
 }
 
-.dojo {
-    color: black;
-}
-
-img {
-    margin-right: 10px;
-}
-
-button {
-    cursor: pointer;
-}
