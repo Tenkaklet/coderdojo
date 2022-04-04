@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+      @apply font-[Raleway];
+    }
+  
+    li {
+      @apply px-4;
+      @apply cursor-pointer;
+    }
+  }
+
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata&family=Lato&family=Merriweather&family=Noto+Serif:wght@400;700&family=Oswald&family=Poppins:wght@400;500&family=Raleway:wght@300;400;500;600;700;800;900&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Oswald';
+}
+
+h1, h1 span {
+    font-size: 25px;
+}
+
