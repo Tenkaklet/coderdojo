@@ -147,10 +147,10 @@ const Navbar = () => {
         {/* mobile menu */}
         <ul className={!nav ? 'hidden' : 'absolute top-0 left-0 w-full h-screen bg-[#AE0B05] flex flex-col justify-center items-center py-6 text-4xl'}>
             <li className="py-6 text-4xl">
-            <li className="py-6 text-4xl">
                 <Link onClick={handleClick} to="/languages" smooth={true} duration={500}>
-                    <GoGlobe className='mt-1 ml-1'/>
+                    <GoGlobe />
                     </Link></li>
+            <li className="py-6 text-4xl">
                 <Link onClick={handleClick} to="/home" smooth={true} duration={500}>
                         Home
                     </Link></li>
