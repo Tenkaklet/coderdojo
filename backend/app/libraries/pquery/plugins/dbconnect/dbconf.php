@@ -33,17 +33,8 @@ class dbConf{
         }
     }
 
-
-    //throw error function
-    public function throwError($code, $message){
-        $errorMsg = array(['error' => ['status' => $code, 'message' =>$message]]);
-        return ($errorMsg);
-        exit;
-    }
-
-    public function returnResponse($code, $responseData){
-        $response = ['response' => ['status' =>$code, "result" => $responseData]];
-        return($response);
-        exit;
+    function isJson($string) {
+        json_decode($string);
+        return (json_last_error() == JSON_ERROR_NONE);
     }
 }

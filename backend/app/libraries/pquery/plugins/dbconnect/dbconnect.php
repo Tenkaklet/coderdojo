@@ -13,6 +13,7 @@ class dbconnect extends dbconf{
 
     private function sqlAction($requestArr): array
     {
+
         $responseData = array();
         try{
             //Connect Database
@@ -21,16 +22,14 @@ class dbconnect extends dbconf{
             $sqlData = $requestArr['sql'];
             $sqlDataValuesArr = $requestArr['dataValues'];
             $requestType = $requestArr['requestType'];
-            //print_r($requestArr);
-            $sql = $sqlData;
-            $stmt = $databaseConn->prepare($sql);
+            $stmt = $databaseConn->prepare($sqlData);
 
             $stmt->execute($sqlDataValuesArr);
 
             if($requestType == "INSERT"){
                 $returnInsertId = $requestArr['returnInsertId'];
                 $responseResult = array(
-                    "success" => "The data has been successfully inserted",
+                    "message" => "The data has been successfully inserted",
                 );
                 if($returnInsertId){
                     $last_id = $databaseConn->lastInsertId();
@@ -39,40 +38,53 @@ class dbconnect extends dbconf{
                     );
                     $responseResult = array_merge($last_idArr, $responseResult);
                 }
+
                 $responseData = $responseResult;
             }elseif($requestType == "UPDATE"){
                 $responseResult = array(
-                    "success" => "The table has been successfully updated",
+                    "message" => "The table has been successfully updated",
                 );
                 $responseData = $responseResult;
+
             }elseif($requestType == "DELETE"){
                 $responseResult = array(
-                    "success" => "The data has been successfully deleted",
+                    "message" => "The data has been successfully deleted",
                 );
                 $responseData = $responseResult;
             }
             while ($responseDataFetch = $stmt->fetchAll(PDO::FETCH_ASSOC)) {
                 if($requestType == "SELECT"){
-                    $responseData = $responseDataFetch;
+                    $responseData = array();
+                    $singleResponseData = array();
+                    foreach($responseDataFetch as $singleDataIndex => $singleDataValue){
+                        foreach($singleDataValue as $index => $value){
+                            if($this->isJson($value)){
+                                $singleResponseData[$index] = json_decode($value);
+                            }else{
+                                $singleResponseData[$index] = $value;
+                            }
+                        }
+                        array_push($responseData, $singleResponseData);
+                    }
                 }
             }
 
         }catch (Exception $e){
-            $this->throwError(INTERNAL_ERROR, $e);
+            return throwError(INTERNAL_ERROR, $e);
         }
 
 
         if(!empty($responseData)){
             //return $responseData;
-            return $responseData;
+            return returnResponse(SUCCESS_RESPONSE, $responseData);
         } else {
-            $responseArr = $this->throwError(NO_DATA_FOUND, "No data found");
-            return $responseArr;
+            print_r($responseData);
+            return throwError(NO_DATA_FOUND, "No data found");
         }
     }
 
     //select request
-    public function select($request): array
+    public function select($request)
     {
         $from = "";
         $requestedValues = "";
@@ -82,16 +94,16 @@ class dbconnect extends dbconf{
 
 
         if(!isset($request) || !isset($request['methodValues'])){
-            $this->throwError(MISSING_DATA, "Request and methodvalues is required and cannot be empty");
+            return throwError(MISSING_DATA, "Request and methodvalues is required and cannot be empty");
         }
 
         if(!is_array($request)){
-            $this->throwError(WRONG_DATA_TYPE, "Request should be type array");
+            return throwError(WRONG_DATA_TYPE, "Request should be type array");
         }
 
         //check if all requierd data is included in the array
         if(!isset($request['methodValues'][0])){
-            $this->throwError(MISSING_DATA, "The FROM data is missing");
+            return throwError(MISSING_DATA, "The FROM data is missing");
         }
 
         //if there is no data selected then return * (select * from ....)
@@ -160,7 +172,7 @@ class dbconnect extends dbconf{
                 }
                 $sql .= " JOIN ".$JOINString;
             }catch (Exception $e){
-                $this->throwError(INTERNAL_ERROR, $e);
+                return throwError(INTERNAL_ERROR, $e);
             }
         }
 
@@ -239,7 +251,7 @@ class dbconnect extends dbconf{
 
                 }
             }catch (Exception $e){
-                $this->throwError(INTERNAL_ERROR, $e);
+                return throwError(INTERNAL_ERROR, $e);
             }
 
             //print_r($WHEREArray);
@@ -290,30 +302,27 @@ class dbconnect extends dbconf{
         }
 
         //prepare the array to to be excuted
-        $dataArrayPrepared = array('sql' => $sql, 'dataValues' => $dataValues, 'requestType' => 'SELECT');
-        $requestArr = $dataArrayPrepared;
+        $requestArr = array('sql' => $sql, 'dataValues' => $dataValues, 'requestType' => 'SELECT');
 
-        array_push($response, $this->sqlAction($requestArr));
-
-        return($this->returnResponse(SUCCESS_RESPONSE, $response));
+        return $this->sqlAction($requestArr);
     }
 
 
     //inset request
-    public function insert($request): array
+    public function insert($request) : array
     {
 
         if(!isset($request) || !isset($request['methodValues'])){
-            $this->throwError(MISSING_DATA, "Request and methodvalues is required and cannot be empty");
+            return throwError(MISSING_DATA, "Request and methodvalues is required and cannot be empty");
         }
 
         if(!is_array($request)){
-            $this->throwError(WRONG_DATA_TYPE, "Request should be type array");
+            return throwError(WRONG_DATA_TYPE, "Request should be type array");
         }
 
         //check if all requierd data is included in the array
         if(!isset($request['methodValues']['INTO'])){
-            $this->throwError(MISSING_DATA, "INTO Is missing");
+            return throwError(MISSING_DATA, "INTO Is missing");
         }
 
         $INTO = $request['methodValues']['INTO'];
@@ -322,12 +331,12 @@ class dbconnect extends dbconf{
         $response = array();
 
         if(empty($INTO)){
-            $this->throwError(MISSING_DATA, "INTO cannot be empty");
+            return throwError(MISSING_DATA, "INTO cannot be empty");
         }
 
         for ($i = 0; $i < count($INTO); $i++) {
             if (!isset($request['methodValues']['COL' . $i]) || !isset($request['methodValues']['VALUES' . $i])) {
-                $this->throwError(MISSING_DATA, "COL should have a number and starts with 0 (COL0, COL1, COL2 ...)");
+                return throwError(MISSING_DATA, "COL should have a number and starts with 0 (COL0, COL1, COL2 ...)");
             }
             $singleINTO = $INTO[$i];
             $COL = $request['methodValues']['COL' . $i];
@@ -355,26 +364,24 @@ class dbconnect extends dbconf{
         for ($reqI = 0; $reqI < count($requestArr); $reqI++) {
             array_push($response, $this->sqlAction($requestArr[$reqI]));
         }
-
-        $this->returnResponse(SUCCESS_RESPONSE, $response);
+        return $response;
     }
 
 
     //update request
     public function update($request): array
     {
-
         if(!isset($request) || !isset($request['methodValues'])){
-            $this->throwError(MISSING_DATA, "Request and methodvalues is required and cannot be empty");
+            return throwError(MISSING_DATA, "Request and methodvalues is required and cannot be empty");
         }
 
         if(!is_array($request)){
-            $this->throwError(WRONG_DATA_TYPE, "Request should be type array");
+            return throwError(WRONG_DATA_TYPE, "Request should be type array");
         }
 
         //check if all requierd data is included in the array
         if(!isset($request['methodValues']['TABLE'])){
-            $this->throwError(MISSING_DATA, "TABLE Is missing");
+            return throwError(MISSING_DATA, "TABLE Is missing");
         }
 
 
@@ -386,12 +393,12 @@ class dbconnect extends dbconf{
 
 
         if(empty($TABLE)){
-            $this->throwError(MISSING_DATA, "TABLE cannot be empty");
+            return throwError(MISSING_DATA, "TABLE cannot be empty");
         }
 
         for ($i = 0; $i < count($TABLE); $i++) {
             if (!isset($request['methodValues']['SETCOL' . $i]) || !isset($request['methodValues']['SETVALUES' . $i])) {
-                $this->throwError(MISSING_DATA, "SETCOL should have a number and starts with 0 (SETCOL0, SETCOL1, SETCOL2 ...)");
+                return throwError(MISSING_DATA, "SETCOL should have a number and starts with 0 (SETCOL0, SETCOL1, SETCOL2 ...)");
             }
             $singleTABLE = $TABLE[$i];
             $SETCOL = $request['methodValues']['SETCOL' . $i];
@@ -505,14 +512,14 @@ class dbconnect extends dbconf{
             }
 
 
-            $dataArrayPrepared = array('sql' => $sql, 'dataValues' => $dataValues[$i], 'requestType' => 'UPDATE', 'returnInsertId' => $request['returnInsertId']);
+            $dataArrayPrepared = array('sql' => $sql, 'dataValues' => $dataValues[$i], 'requestType' => 'UPDATE');
             array_push($requestArr, $dataArrayPrepared);
         }
 
         for ($reqI = 0; $reqI < count($requestArr); $reqI++) {
             array_push($response, $this->sqlAction($requestArr[$reqI]));
         }
-        $this->returnResponse(SUCCESS_RESPONSE, $response);
+       return $response;
     }
 
 
@@ -521,16 +528,16 @@ class dbconnect extends dbconf{
     public function delete($request): array
     {
         if(!isset($request) || !isset($request['methodValues'])){
-            $this->throwError(MISSING_DATA, "Request and methodvalues is required and cannot be empty");
+            return throwError(MISSING_DATA, "Request and methodvalues is required and cannot be empty");
         }
 
         if(!is_array($request)){
-            $this->throwError(WRONG_DATA_TYPE, "Request should be type array");
+            return throwError(WRONG_DATA_TYPE, "Request should be type array");
         }
 
         //check if all requierd data is included in the array
         if(!isset($request['methodValues']['FROM'])){
-            $this->throwError(MISSING_DATA, "FROM Is missing");
+            return throwError(MISSING_DATA, "FROM Is missing");
         }
 
         $FROM = $request['methodValues']['FROM'];
@@ -541,7 +548,7 @@ class dbconnect extends dbconf{
 
 
         if(empty($FROM)){
-            $this->throwError(MISSING_DATA, "FROM cannot be empty");
+            return throwError(MISSING_DATA, "FROM cannot be empty");
         }
 
         for ($i = 0; $i < count($FROM); $i++) {
@@ -639,14 +646,14 @@ class dbconnect extends dbconf{
             }else{
                 $sql = "DELETE FROM ".$singleFROM;
             }
-            $dataArrayPrepared = array('sql' => $sql, 'dataValues' => $dataValues[$i], 'requestType' => 'DELETE', 'returnInsertId' => $request['returnInsertId']);
+            $dataArrayPrepared = array('sql' => $sql, 'dataValues' => $dataValues[$i], 'requestType' => 'DELETE');
             array_push($requestArr, $dataArrayPrepared);
         }
 
         for ($reqI = 0; $reqI < count($requestArr); $reqI++) {
             array_push($response, $this->sqlAction($requestArr[$reqI]));
         }
-        $this->returnResponse(SUCCESS_RESPONSE, $response);
+        return $response;
     }
 
 
