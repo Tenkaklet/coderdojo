@@ -19,3 +19,16 @@ function generateRandomNumber($length = 10) {
     }
     return $randomNumber;
 }
+
+//throw error function
+function throwError($code, $message){
+    $errorMsg = ['status' => $code, 'message' =>$message];
+    return ($errorMsg);
+    exit;
+}
+
+function returnResponse($code, $responseData){
+    $response = ['status' =>$code, "data" => $responseData];
+    return($response);
+    exit;
+}

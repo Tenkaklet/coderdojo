@@ -5,9 +5,16 @@ class aboutController extends Controller{
     }
 
     public function defaultMethod(){
-        $allData = $this->aboutModal->allData();
+        $lang = "";
+        if((isset(getallheaders()["lang"])) && (!empty(getallheaders()["lang"]))){
+            $lang = getallheaders()["lang"];
+        }else{
+            $lang = "English";
+        }
+        //echo $lang;
+        $allData = $this->aboutModal->allData($lang);
         $data = [
-            'allData' => $allData,
+            'getData' => $allData,
             'request_type' => $_SERVER['REQUEST_METHOD'],
             'params' => $this->_params
         ];
