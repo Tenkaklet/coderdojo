@@ -19,7 +19,7 @@ const Navbar = () => {
 //   activeNav === '#about' ? 'active' : '
 
   return (
-    <div className='fixed w-full h-[80px] flex justify-between items-center px-4 bg-[#AE0B05] text-white'>
+    <div className='z-10 fixed w-full h-[80px] flex justify-between items-center px-4 bg-[#AE0B05] text-white'>
         <div className='flex flex-row items-center '>
             <Link className='flex cursor-pointer' to='home' smooth={true} duration={500} >
             <img src={logo} alt="Logo" style={{width: '40px', height: '40px'}} />
