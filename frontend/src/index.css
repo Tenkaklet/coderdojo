@@ -5,6 +5,7 @@
 @layer base {
     body {
       @apply font-[Raleway];
+      @apply h-full;
     }
   
     li {
@@ -15,6 +16,10 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata&family=Lato&family=Merriweather&family=Noto+Serif:wght@400;700&family=Oswald&family=Poppins:wght@400;500&family=Raleway:wght@300;400;500;600;700;800;900&display=swap');
 
+:root {
+  --swiper-theme-color: #fff !important;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -24,5 +29,5 @@ body {
 
 h1, h1 span {
     font-size: 25px;
+    position: ;
 }
-
