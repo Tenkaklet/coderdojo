@@ -4,7 +4,7 @@
 
 @layer base {
     body {
-      @apply font-[Raleway];
+      @apply font-[Poppins];
       @apply h-full;
     }
   
@@ -24,10 +24,18 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Oswald';
+    font-family: 'Poppins', sans-serif;
 }
 
 h1, h1 span {
     font-size: 25px;
-    position: ;
+}
+
+.py-1 {
+  text-transform: capitalize;
+  font-weight: normal;
+}
+
+.nav-list {
+  letter-spacing: 2.5px;
 }
