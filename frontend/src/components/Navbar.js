@@ -19,14 +19,14 @@ const Navbar = () => {
 //   activeNav === '#about' ? 'active' : '
 
   return (
-    <div className='z-10 fixed w-full h-[80px] flex justify-between items-center px-4 bg-[#AE0B05] text-white'>
+    <div className='z-10 fixed w-full h-[80px] flex justify-between items-center px-4 bg-white text-black'>
         <div className='flex flex-row items-center '>
             <Link className='flex cursor-pointer' to='home' smooth={true} duration={500} >
             <img src={logo} alt="Logo" style={{width: '40px', height: '40px'}} />
-            <h1 className='mx-2'>Coder<span className='text-black'>Dojo</span> Helsingborg</h1>
+            <h1 className='mx-3 text-xl flex items-center font-semibold uppercase'>Coderdojo Helsingborg</h1>
             </Link>
         </div>
-        <ul className='hidden md:flex text-xl items-center'>
+        <ul className='hidden md:flex text-lg font-semibold items-center uppercase nav-list'>
                 <li>
                     <Link to="home" smooth={true} duration={500}>
                         Home
@@ -43,11 +43,11 @@ const Navbar = () => {
                     </Link>
                 </li>
                 <li>
-                <Link to="language" smooth={true} duration={500} className='text-[#fff]'>
+                <Link to="language" smooth={true} duration={500} className='text-[black]'>
                 <Menu as="div" className="relative inline-block text-left">
       <div>
-        <Menu.Button>
-          <GoGlobe className='text-white h-[25px] w-[25px] mt-1' />
+        <Menu.Button className="border-2 border-black p-1 px-5 rounded-[50px] hover:bg-slate-100">
+          English
         </Menu.Button>
       </div>
 
@@ -60,14 +60,14 @@ const Navbar = () => {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg shadow-gray-500 bg-[#AE0B05] ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none">
+        <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg shadow-gray-500 bg-[white] ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none">
           <div className="py-1">
             <Menu.Item>
               {({ active }) => (
                 <a
                   href="#"
                   className={classNames(
-                    active ? 'bg-[#cc2c27] text-white' : 'text-white',
+                    active ? 'bg-[#AE0B05] text-white' : 'text-black',
                     'px-4 py-2 text-sm flex'
                   )}
                 >
@@ -80,7 +80,7 @@ const Navbar = () => {
                 <a
                   href="#"
                   className={classNames(
-                    active ? 'bg-[#cc2c27] text-white' : 'text-white',
+                    active ? 'bg-[#AE0B05] text-white' : 'text-black',
                     ' px-4 py-2 text-sm flex'
                   )}
                 >
@@ -93,7 +93,7 @@ const Navbar = () => {
                 <a
                   href="#"
                   className={classNames(
-                    active ? 'bg-[#cc2c27] text-white' : 'text-white',
+                    active ? 'bg-[#AE0B05] text-white' : 'text-black',
                     'flex px-4 py-2 text-sm'
                   )}
                 >
@@ -106,7 +106,7 @@ const Navbar = () => {
                 <a
                   href="#"
                   className={classNames(
-                    active ? 'bg-[#cc2c27] text-white' : 'text-white',
+                    active ? 'bg-[#AE0B05] text-white' : 'text-black',
                     'flex px-4 py-2 text-sm'
                   )}
                 >
@@ -121,7 +121,7 @@ const Navbar = () => {
                 <a
                   href="#"
                   className={classNames(
-                    active ? 'bg-[#cc2c27] text-white' : 'text-white',
+                    active ? 'bg-[#AE0B05] text-white' : 'text-black',
                     'flex px-4 py-2 text-sm'
                   )}
                 >
@@ -145,11 +145,7 @@ const Navbar = () => {
         </div>
 
         {/* mobile menu */}
-        <ul className={!nav ? 'hidden' : 'absolute top-0 left-0 w-full h-screen bg-[#AE0B05] flex flex-col justify-center items-center py-6 text-4xl'}>
-            <li className="py-6 text-4xl">
-                <Link onClick={handleClick} to="/languages" smooth={true} duration={500}>
-                    <GoGlobe />
-                    </Link></li>
+        <ul className={!nav ? 'hidden' : 'absolute top-0 left-0 w-full h-screen bg-[white] flex flex-col justify-center items-center py-6 text-4xl'}>
             <li className="py-6 text-4xl">
                 <Link onClick={handleClick} to="/home" smooth={true} duration={500}>
                         Home
@@ -161,6 +157,11 @@ const Navbar = () => {
             <li className="py-6 text-4xl">
                 <Link onClick={handleClick} to="/contact" smooth={true} duration={500}>
                         Contact
+                    </Link></li>
+            <li className="py-6 text-4xl">
+                <Link onClick={handleClick} to="/languages" smooth={true} duration={500}>
+                  <button className="border-2 border-black p-2 px-5 rounded-[50px] hover:bg-slate-200">Language</button>
+                    
                     </Link></li>
         </ul>
     </div>
