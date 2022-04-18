@@ -19,11 +19,11 @@ const Navbar = () => {
 //   activeNav === '#about' ? 'active' : '
 
   return (
-    <div className='z-10 fixed w-full h-[80px] flex justify-between items-center px-4 bg-white text-black'>
+    <div className='z-20 fixed w-full h-[80px] flex justify-between items-center px-4 bg-white text-black'>
         <div className='flex flex-row items-center '>
             <Link className='flex cursor-pointer' to='home' smooth={true} duration={500} >
             <img src={logo} alt="Logo" style={{width: '40px', height: '40px'}} />
-            <h1 className='mx-3 text-xl flex items-center font-semibold uppercase'>Coderdojo Helsingborg</h1>
+            <h1 className='mx-3 text-xl flex items-center font-semibold uppercase logo'>Coderdojo Helsingborg</h1>
             </Link>
         </div>
         <ul className='hidden md:flex text-lg font-semibold items-center uppercase nav-list'>
@@ -67,7 +67,7 @@ const Navbar = () => {
                 <a
                   href="#"
                   className={classNames(
-                    active ? 'bg-[#AE0B05] text-white' : 'text-black',
+                    active ? 'bg-slate-100 text-black' : 'text-black',
                     'px-4 py-2 text-sm flex'
                   )}
                 >
@@ -80,7 +80,7 @@ const Navbar = () => {
                 <a
                   href="#"
                   className={classNames(
-                    active ? 'bg-[#AE0B05] text-white' : 'text-black',
+                    active ? 'bg-slate-100 text-black' : 'text-black',
                     ' px-4 py-2 text-sm flex'
                   )}
                 >
@@ -93,7 +93,7 @@ const Navbar = () => {
                 <a
                   href="#"
                   className={classNames(
-                    active ? 'bg-[#AE0B05] text-white' : 'text-black',
+                    active ? 'bg-slate-100 text-black' : 'text-black',
                     'flex px-4 py-2 text-sm'
                   )}
                 >
@@ -106,7 +106,7 @@ const Navbar = () => {
                 <a
                   href="#"
                   className={classNames(
-                    active ? 'bg-[#AE0B05] text-white' : 'text-black',
+                    active ? 'bg-slate-100 text-black' : 'text-black',
                     'flex px-4 py-2 text-sm'
                   )}
                 >
@@ -121,7 +121,7 @@ const Navbar = () => {
                 <a
                   href="#"
                   className={classNames(
-                    active ? 'bg-[#AE0B05] text-white' : 'text-black',
+                    active ? 'bg-slate-100 text-black' : 'text-black',
                     'flex px-4 py-2 text-sm'
                   )}
                 >
