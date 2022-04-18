@@ -14,7 +14,7 @@
     }
   }
 
-@import url('https://fonts.googleapis.com/css2?family=Inconsolata&family=Lato&family=Merriweather&family=Noto+Serif:wght@400;700&family=Oswald&family=Poppins:wght@400;500&family=Raleway:wght@300;400;500;600;700;800;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inconsolata&family=Lato&family=Merriweather&family=Noto+Serif:wght@400;700&family=Oswald&family=Poppins:wght@400;500&family=Raleway:wght@300;400;500;600;700;800;900&family=Varela+Round&display=swap');
 
 :root {
   --swiper-theme-color: #fff !important;
@@ -38,4 +38,28 @@ h1, h1 span {
 
 .nav-list {
   letter-spacing: 2.5px;
+}
+
+.logo {
+  font-family: 'Varela Round', sans-serif;
+  font-weight: 900;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  49% {
+    transform: rotate(360deg);
+  }
+  99% {
+    transform: rotate(720deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .star-animation {
+    transform-origin: 36px 36px;
+    animation: rotate 450ms infinite;
+  }
 }
