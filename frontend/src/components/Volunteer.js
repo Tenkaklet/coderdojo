@@ -3,6 +3,8 @@ import React from 'react'
 const Volunteer = () => {
   return (
     <div className='w-full h-[700px] bg-white text-black relative top-[80px]'>
+      <div className=''>
+        <img src="" />
         <div className='flex justify-center flex-col'>
             <div className='font-bold'>
             <h2 className='text-3xl'>
@@ -17,6 +19,7 @@ const Volunteer = () => {
 When I see them doing things on their own, getting their ideas out there, and seeing creativity spur out of the moment, really gives me so much joy 
             </p>
             <p className='font-bold pt-5'>Ekaterina, Dojo volunteer in Bulgaria</p>
+        </div>
         </div>
     </div>
   )

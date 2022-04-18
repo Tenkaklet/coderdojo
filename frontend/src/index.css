@@ -57,9 +57,7 @@ h1, h1 span {
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .star-animation {
+  .animate {
     transform-origin: 36px 36px;
     animation: rotate 450ms infinite;
   }
-}
