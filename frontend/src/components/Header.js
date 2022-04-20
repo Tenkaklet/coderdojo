@@ -26,7 +26,7 @@ const Header = () => {
             58,000 young people are being creative with technology with the help of 12,000 volunteers in 115 countries. Join us!
             </p>
             <div className='flex justify-center items-center lg:mt-32 mt-20'>
-            <button className='bg-black w-[300px] z-10 h-[70px] text-center font-bold uppercase  rounded-[50px]'>
+            <button className='hover:scale-105 duration-500 bg-black w-[300px] z-10 h-[70px] text-center font-bold uppercase  rounded-[50px]'>
                 <a href="/signup">Become a ninja now!</a>
             </button>
             </div>
