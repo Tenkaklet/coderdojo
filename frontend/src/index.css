@@ -61,3 +61,29 @@ h1, h1 span {
     transform-origin: 36px 36px;
     animation: rotate 450ms infinite;
   }
+
+  @media only screen and (max-width: 1300px){
+    .vol-container {
+      width: 100% !important;
+    }
+  }
+
+  img .cls-4 {
+    transform-origin: 150px;
+    border:1px solid red;
+    background: red;
+    animation: test 2500ms infinite;
+    }
+
+    @keyframes test {
+      0% {
+        transform: rotate(-4deg);
+      }
+      
+      50% {
+        transform: rotate(4deg);
+      }
+      100% {
+        transform: rotate(-4deg);
+      }
+    }
