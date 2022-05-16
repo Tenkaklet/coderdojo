@@ -5,6 +5,7 @@
 - Copyright &copy; 2022 Oscar Jansson (oscar.t.jansson@hotmail.com)
 - Copyright &copy; 2022 Ahmad Asili (ahmadasili1928@gmail.com)
 - Copyright &copy; 2022 Jimmy Carlberg (jimmy@goodworkmedia.se)
+- Copyright &copy; 2022 Ekaterina Schylander (ekaterinaschylander@gmail.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
