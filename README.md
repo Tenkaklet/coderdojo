@@ -1,5 +1,9 @@
 # Coderdojo
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Tenkaklet_coderdojo&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Tenkaklet_coderdojo)
+![GitHub milestones](https://img.shields.io/github/milestones/all/Tenkaklet/coderdojo?style=flat-square)
+![Discord](https://img.shields.io/discord/898567277056778330?logo=Kjellkod%20%26%20Co.&style=social)
+![GitHub](https://img.shields.io/github/license/Tenkaklet/coderdojo?style=flat-square)
+![GitHub repo size](https://img.shields.io/github/repo-size/Tenkaklet/coderdojo?style=plastic)
 # IMPORTANT
 Please, add yourself to [LICENSE.md](LICENSE.md) whenever you add code to this code base to get credit where credit is due!
 
